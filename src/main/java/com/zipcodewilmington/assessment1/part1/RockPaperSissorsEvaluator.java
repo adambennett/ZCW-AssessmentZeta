@@ -13,16 +13,7 @@ public class RockPaperSissorsEvaluator {
      * @return the respective winning move
      */
     public String getWinningMove(String handSign) {
-        switch (handSign.toLowerCase()) {
-            case "rock":
-                return "paper";
-            case "scissor":
-                return "rock";
-            case "paper":
-                return "scissor";
-            default:
-                return "what";
-        }
+        return (handSign.toLowerCase().equals("rock")) ? "paper" : (handSign.toLowerCase().equals("scissor")) ? "rock" : (handSign.equals("paper")) ? "scissor" : "what";
     }
 
     /**
@@ -30,16 +21,7 @@ public class RockPaperSissorsEvaluator {
      * @return the respective losing move
      */
     public String getLosingMove(String handSign) {
-        switch (handSign.toLowerCase()) {
-            case "rock":
-                return "scissor";
-            case "scissor":
-                return "paper";
-            case "paper":
-                return "rock";
-            default:
-                return "what";
-        }
+        return (handSign.toLowerCase().equals("rock")) ? "scissor" : (handSign.toLowerCase().equals("scissor")) ? "paper" : (handSign.equals("paper")) ? "rock" : "what";
     }
 
     /**
@@ -48,11 +30,6 @@ public class RockPaperSissorsEvaluator {
      * @return a string representative of the winning hand sign between the two players
      */
     public String getWinner(String handSignOfPlayer1, String handSignOfPlayer2) {
-        if (getLosingMove(handSignOfPlayer1).equals(handSignOfPlayer2)) {
-            return handSignOfPlayer1;
-        } else if (getLosingMove(handSignOfPlayer2).equals(handSignOfPlayer1)) {
-            return handSignOfPlayer2;
-        }
-        return "tie";
+        return getLosingMove(handSignOfPlayer1).equals(handSignOfPlayer2) ? handSignOfPlayer1 : (getLosingMove(handSignOfPlayer2).equals(handSignOfPlayer1) ? handSignOfPlayer2 : "tie");
     }
 }
