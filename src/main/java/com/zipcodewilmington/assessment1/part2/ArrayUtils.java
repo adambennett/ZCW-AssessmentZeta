@@ -1,5 +1,9 @@
 package com.zipcodewilmington.assessment1.part2;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -11,7 +15,13 @@ public class ArrayUtils {
      * Given an array of objects, named `objectArray`, and an object `objectToCount`, return the number of times the `objectToCount` appears in the `objectArray`
      */
     public static Integer getNumberOfOccurrences(Object[] objectArray, Object objectToCount) {
-        return null;
+        int amt = 0;
+        for (Object o : objectArray) {
+            if (o.equals(objectToCount)) {
+                amt++;
+            }
+        }
+        return amt;
     }
 
     /**
@@ -21,7 +31,13 @@ public class ArrayUtils {
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
     public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
-        return null;
+        Object[] toRet = new Object[objectArray.length - 1];
+        for (int i = 0; i < objectArray.length; i++) {
+            if (!objectArray[i].equals(objectToRemove)) {
+                toRet[i] = objectArray[i];
+            }
+        }
+        return toRet;
     }
 
     /**
@@ -30,7 +46,24 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the most frequently occuring object in the array
      */
     public static Object getMostCommon(Object[] objectArray) {
-        return null;
+        Object mostCommon = null;
+        Map<Object, Integer> occurences = new HashMap<>();
+        for (Object o : objectArray) {
+            if (occurences.containsKey(o)) {
+                occurences.put(o, occurences.get(o) + 1);
+            } else {
+                occurences.put(o, 1);
+            }
+        }
+        
+        int highestOcc = 0;
+        for (Map.Entry<Object, Integer> i : occurences.entrySet()) {
+            if (i.getValue() > highestOcc) {
+                mostCommon = i.getKey();
+                highestOcc = i.getValue();
+            }
+        }
+        return mostCommon;
     }
 
 
@@ -40,7 +73,24 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
-        return null;
+        Object mostCommon = null;
+        Map<Object, Integer> occurences = new HashMap<>();
+        for (Object o : objectArray) {
+            if (occurences.containsKey(o)) {
+                occurences.put(o, occurences.get(o) + 1);
+            } else {
+                occurences.put(o, 1);
+            }
+        }
+
+        int leastOcc = objectArray.length;
+        for (Map.Entry<Object, Integer> i : occurences.entrySet()) {
+            if (i.getValue() < leastOcc) {
+                mostCommon = i.getKey();
+                leastOcc = i.getValue();
+            }
+        }
+        return mostCommon;
     }
 
     /**
